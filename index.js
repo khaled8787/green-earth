@@ -5,7 +5,7 @@ const loadPlants = (id) => {
    .then(res => res.json())
    .then(data => {
     allPlant = data.plants;
-    filterCategory(id);
+    displayPlants(allPlant);
    })
 }
 
@@ -39,6 +39,14 @@ const displayPlants = (plants) =>{
     });
 }
 
+const highlightBtn = (btn) =>{
+    const allBtns = document.querySelectorAll('.categoryBtn');
+    allBtns.forEach(button => {
+        button.classList.remove('bg-green-600', 'text-white');
+    });
+    btn.classList.add('bg-green-600', 'text-white');
+};
+
 const collectCategory = () =>{
     const url = 'https://openapi.programming-hero.com/api/categories';
     fetch(url)
@@ -49,16 +57,26 @@ const collectCategory = () =>{
 
 const addCategory = (categories) =>{
     const getCategoryContainer = document.getElementById('category-container');
+    const allBtn = document.createElement('button');
+    allBtn.classList.add('btn-success', 'btn', 'btn-outline', 'mx-5', 'categoryBtn');
+    allBtn.innerText = 'All Trees';
+    allBtn.addEventListener('click', () =>{
+        highlightBtn(allBtn);
+        displayPlants(allPlant);
+    })
+    getCategoryContainer.appendChild(allBtn)
     for(let category of categories){
         const p = document.createElement('button')
         p.classList.add('btn-success', 'btn', 'btn-outline', 'mx-5', 'categoryBtn')
         p.innerText = category.category_name;
         p.addEventListener('click', ()=>{
-            loadPlants(category.category_name)
-            
+            filterCategory(category.category_name);
+            highlightBtn(p);
+
         });
         getCategoryContainer.appendChild(p)
     };
 };
 
 collectCategory();
+loadPlants();
