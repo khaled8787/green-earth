@@ -19,16 +19,19 @@ const displayPlants = (plants) =>{
     plantContainer.innerHTML = '';
     plants.forEach(element => {
         const div = document.createElement('div');
-        div.classList.add('w-84', 'bg-white', 'shadow-2xl', 'm-4');
+        div.classList.add('w-84', 'bg-white', 'shadow-2xl', 'm-4', 'p-4');
         div.innerHTML = `
-          <img class="w-80" src="${element.image}" alt="">
+          <img class="w-full h-[350px]" src="${element.image}" alt="">
+          <br>
 <div>
   <h2 class="text-xl">${element.name}</h2>
   <p class="text-gray-600">${element.description}</p>
-  <div class="flex justify-between">
+  <br>
+  <div class="flex justify-between items-center">
     <p class="bg-green-200 p-2 rounded-lg">${element.category}</p>
     <p>৳${element.price}</p>
   </div>
+  <br>
   <button class="btn btn-success w-full">Add to Cart</button>
 </div>
         `;
