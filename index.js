@@ -14,6 +14,8 @@ const filterCategory = (name) =>{
     displayPlants(matchPlants);
 }
 
+let totalPrice = 0;
+
 const displayPlants = (plants) =>{
     const plantContainer = document.getElementById('plant-container');
     plantContainer.innerHTML = '';
@@ -32,7 +34,7 @@ const displayPlants = (plants) =>{
     <p>৳${element.price}</p>
   </div>
   <br>
-  <button class="btn btn-success w-full">Add to Cart</button>
+  <button class="btn btn-success w-full cart-btn">Add to Cart</button>
   </div>
         `;
 
@@ -46,8 +48,38 @@ const displayPlants = (plants) =>{
             document.getElementById('my_modal_5').showModal();
         })
         plantContainer.appendChild(div);
+
+
+        const cartBtn = div.querySelector('.cart-btn');
+        cartBtn.addEventListener('click', () =>{
+          const historyContainer = document.getElementById('history-container');
+          const cartItem = document.createElement('div');
+          cartItem.classList.add('bg-green-100', 'p-3', 'rounded-md');
+          cartItem.innerHTML = `
+             <p class="font-bold text-xl">${element.name}</p>
+              <div class="flex justify-between items-center">
+                <p class="text-xl cart-price">${element.price}</p>
+                <i class="fa-solid fa-xmark text-xl"></i>
+              </div>
+          `;
+          totalPrice += parseInt(element.price);
+          updateTotal();
+
+          cartItem.querySelector('.fa-xmark').addEventListener('click', () => {
+            const priceText = cartItem.querySelector('.cart-price').innerText;
+            const price = parseInt(priceText.replace('৳', ''));
+            totalPrice = totalPrice - price;
+            updateTotal();
+            cartItem.remove();
+          });
+          historyContainer.appendChild(cartItem);
+        })
     });
-}
+};
+
+const updateTotal = () => {
+    document.getElementById('total-cart-price').innerHTML = `৳${totalPrice}`;
+};
 
 const highlightBtn = (btn) =>{
     const allBtns = document.querySelectorAll('.categoryBtn');
