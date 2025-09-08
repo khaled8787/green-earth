@@ -24,7 +24,7 @@ const displayPlants = (plants) =>{
           <img class="w-full h-[350px]" src="${element.image}" alt="">
           <br>
   <div>
-  <h2 class="text-xl">${element.name}</h2>
+  <h2 class="text-xl category-name">${element.name}</h2>
   <p class="text-gray-600">${element.description}</p>
   <br>
   <div class="flex justify-between items-center">
@@ -35,6 +35,16 @@ const displayPlants = (plants) =>{
   <button class="btn btn-success w-full">Add to Cart</button>
   </div>
         `;
+
+        div.querySelector('.category-name').addEventListener('click', () =>{
+            document.getElementById('modal-title').innerText = element.name;
+            document.getElementById('modal-img').src = element.image;
+            document.getElementById('modal-category').innerText = element.category;
+            document.getElementById('modal-price').innerText = element.price;
+            document.getElementById('modal-description').innerText = element.description;
+
+            document.getElementById('my_modal_5').showModal();
+        })
         plantContainer.appendChild(div);
     });
 }
@@ -54,6 +64,8 @@ const collectCategory = () =>{
     .then(data =>{ addCategory(data.categories);
     });
 };
+
+
 
 const addCategory = (categories) =>{
     const getCategoryContainer = document.getElementById('category-container');

@@ -127,3 +127,22 @@
     <script src="index.js"></script>
 </body>
 </html>
+
+
+<button class="btn" onclick="my_modal_5.showModal()">${element.name}</button>
+<dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
+  <div class="modal-box">
+    <h3 id="modal-title" class="text-lg font-bold">${element.name}</h3>
+    <img id="modal-img" class="h-[200px] w-[150px]" src="assets/hero-leaf1.png" alt="">
+    <br>
+    <p id="modal-category"><span class="font-bold">Category: </span>${element.category}</p>
+    <p id="modal-price"><span class="font-bold">Price: </span>${element.price}</p>
+    <br>
+    <p id="modal-description"><span class="font-bold">Description: </span>${element.description}</p>
+    <div class="modal-action">
+      <form method="dialog">
+        <button class="btn">Close</button>
+      </form>
+    </div>
+  </div>
+</dialog>
