@@ -23,7 +23,7 @@ const displayPlants = (plants) =>{
         div.innerHTML = `
           <img class="w-full h-[350px]" src="${element.image}" alt="">
           <br>
-<div>
+  <div>
   <h2 class="text-xl">${element.name}</h2>
   <p class="text-gray-600">${element.description}</p>
   <br>
@@ -33,7 +33,7 @@ const displayPlants = (plants) =>{
   </div>
   <br>
   <button class="btn btn-success w-full">Add to Cart</button>
-</div>
+  </div>
         `;
         plantContainer.appendChild(div);
     });
@@ -58,7 +58,7 @@ const collectCategory = () =>{
 const addCategory = (categories) =>{
     const getCategoryContainer = document.getElementById('category-container');
     const allBtn = document.createElement('button');
-    allBtn.classList.add('btn-success', 'btn', 'btn-outline', 'mx-5', 'categoryBtn');
+    allBtn.classList.add('btn-success', 'btn', 'btn-outline', 'mx-5', 'categoryBtn', 'bg-green-600', 'text-white');
     allBtn.innerText = 'All Trees';
     allBtn.addEventListener('click', () =>{
         highlightBtn(allBtn);
