@@ -34,7 +34,7 @@ const displayPlants = (plants) =>{
     <p>৳${element.price}</p>
   </div>
   <br>
-  <button class="btn btn-success w-full cart-btn">Add to Cart</button>
+  <button class="btn btn-success w-full cart-btn hover:bg-green-600 hover:text-white">Add to Cart</button>
   </div>
         `;
 
